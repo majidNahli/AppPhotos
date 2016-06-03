@@ -14,6 +14,7 @@ import java.util.List;
 
 import nehli.ma.co.appphotos.R;
 import nehli.ma.co.appphotos.model.Data;
+import nehli.ma.co.appphotos.views.MyImageView;
 
 
 /**

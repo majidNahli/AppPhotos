@@ -27,18 +27,19 @@ import java.util.List;
 
 import nehli.ma.co.appphotos.R;
 import nehli.ma.co.appphotos.model.Data;
+import nehli.ma.co.appphotos.views.MyImageView;
 
 
 /**
  * Created by Majid on 03/06/2016.
  */
-public class PictureListAdapter extends BaseAdapter implements AdapterView.OnClickListener{
+public class PictureListAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<Data> dataList;
     private TextView textView;
     private ImageView imageView;
-    private CheckBox checkBox;
+
 
     public PictureListAdapter(Context mContext, List<Data> dataList) {
         this.mContext = mContext;
@@ -64,19 +65,12 @@ public class PictureListAdapter extends BaseAdapter implements AdapterView.OnCli
         // set the view's size, margins, paddings and layout parameters
         textView          = (TextView)  v.findViewById(R.id.txt_album);
         imageView         = (ImageView) v.findViewById(R.id.image_grid);
-        checkBox    = (CheckBox)  v.findViewById(R.id.checkBox);
+
 
 
         Log.d("IDPIC","size album : "+ dataList.size());
         displayPicture(position);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageView.setColorFilter(Color.GRAY);
-            }
-        });
-        v.setOnClickListener(this);
         return v;
     }
 
@@ -108,11 +102,4 @@ public class PictureListAdapter extends BaseAdapter implements AdapterView.OnCli
         ).executeAsync();
     }
 
-    @Override
-    public void onClick(View view) {
-
-        Log.d("IDPIC","click item");
-        checkBox.setVisibility(View.VISIBLE);
-
-    }
 }
