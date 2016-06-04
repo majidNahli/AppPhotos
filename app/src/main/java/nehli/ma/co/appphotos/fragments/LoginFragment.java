@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -176,29 +177,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         fragmentTransaction.replace(R.id.fragment, fr);
         fragmentTransaction.commit();
     }
-    public void picWithId(String id_pic) {
-
-        new GraphRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/"+id_pic,
-                null,
-                HttpMethod.GET,
-                new GraphRequest.Callback() {
-                    public void onCompleted(GraphResponse response) {
-
-                    }
-                }
-        ).executeAsync();
-
+    public boolean isFacebookLoggedIn(){
+        return AccessToken.getCurrentAccessToken() != null;
     }
-
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.btn_display :
-                goToListAlbums();
+                if (isFacebookLoggedIn())
+                    goToListAlbums();
+                else
+                    Toast.makeText(getActivity().getApplicationContext(), "You are not logged in facebook.", Toast.LENGTH_LONG).show();
                 break;
         }
     }
